@@ -10,4 +10,6 @@
 
 @interface HPUnrecognizedSelectorSolveObject : NSObject
 
++ (instancetype)shareInstance;
+
 @end

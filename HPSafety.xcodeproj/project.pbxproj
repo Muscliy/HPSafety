@@ -13,6 +13,8 @@
 		598D62C4203EC979008173B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 598D62C3203EC979008173B8 /* Assets.xcassets */; };
 		598D62C7203EC979008173B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598D62C5203EC979008173B8 /* LaunchScreen.storyboard */; };
 		598D62CA203EC979008173B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 598D62C9203EC979008173B8 /* main.m */; };
+		598D62D2203ECAD2008173B8 /* NSObject+Forwarding.m in Sources */ = {isa = PBXBuildFile; fileRef = 598D62D1203ECAD2008173B8 /* NSObject+Forwarding.m */; };
+		598D62D5203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 598D62D4203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		598D62C6203EC979008173B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		598D62C8203EC979008173B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		598D62C9203EC979008173B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		598D62D0203ECAD2008173B8 /* NSObject+Forwarding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Forwarding.h"; sourceTree = "<group>"; };
+		598D62D1203ECAD2008173B8 /* NSObject+Forwarding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Forwarding.m"; sourceTree = "<group>"; };
+		598D62D3203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPUnrecognizedSelectorSolveObject.h; sourceTree = "<group>"; };
+		598D62D4203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPUnrecognizedSelectorSolveObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,10 @@
 				598D62C5203EC979008173B8 /* LaunchScreen.storyboard */,
 				598D62C8203EC979008173B8 /* Info.plist */,
 				598D62C9203EC979008173B8 /* main.m */,
+				598D62D0203ECAD2008173B8 /* NSObject+Forwarding.h */,
+				598D62D1203ECAD2008173B8 /* NSObject+Forwarding.m */,
+				598D62D3203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.h */,
+				598D62D4203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m */,
 			);
 			path = HPSafety;
 			sourceTree = "<group>";
@@ -143,7 +153,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				598D62BF203EC979008173B8 /* ViewController.m in Sources */,
+				598D62D5203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m in Sources */,
 				598D62CA203EC979008173B8 /* main.m in Sources */,
+				598D62D2203ECAD2008173B8 /* NSObject+Forwarding.m in Sources */,
 				598D62BC203EC979008173B8 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
