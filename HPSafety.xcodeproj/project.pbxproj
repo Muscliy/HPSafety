@@ -15,6 +15,10 @@
 		598D62CA203EC979008173B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 598D62C9203EC979008173B8 /* main.m */; };
 		598D62D2203ECAD2008173B8 /* NSObject+Forwarding.m in Sources */ = {isa = PBXBuildFile; fileRef = 598D62D1203ECAD2008173B8 /* NSObject+Forwarding.m */; };
 		598D62D5203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 598D62D4203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m */; };
+		59F969E82040060A000413E7 /* NSObject+KVOProtect.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F969E72040060A000413E7 /* NSObject+KVOProtect.m */; };
+		59F969EC2040087A000413E7 /* CYLDeallocBlockExecutor in Resources */ = {isa = PBXBuildFile; fileRef = 59F969EB2040087A000413E7 /* CYLDeallocBlockExecutor */; };
+		59F969EF20400993000413E7 /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F969EE20400993000413E7 /* NSObject+Swizzle.m */; };
+		59F969F220400F63000413E7 /* UIView+Protect.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F969F120400F63000413E7 /* UIView+Protect.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,13 @@
 		598D62D1203ECAD2008173B8 /* NSObject+Forwarding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Forwarding.m"; sourceTree = "<group>"; };
 		598D62D3203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HPUnrecognizedSelectorSolveObject.h; sourceTree = "<group>"; };
 		598D62D4203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HPUnrecognizedSelectorSolveObject.m; sourceTree = "<group>"; };
+		59F969E62040060A000413E7 /* NSObject+KVOProtect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVOProtect.h"; sourceTree = "<group>"; };
+		59F969E72040060A000413E7 /* NSObject+KVOProtect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVOProtect.m"; sourceTree = "<group>"; };
+		59F969EB2040087A000413E7 /* CYLDeallocBlockExecutor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CYLDeallocBlockExecutor; sourceTree = "<group>"; };
+		59F969ED20400993000413E7 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
+		59F969EE20400993000413E7 /* NSObject+Swizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
+		59F969F020400F63000413E7 /* UIView+Protect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Protect.h"; sourceTree = "<group>"; };
+		59F969F120400F63000413E7 /* UIView+Protect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Protect.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +75,7 @@
 		598D62B9203EC979008173B8 /* HPSafety */ = {
 			isa = PBXGroup;
 			children = (
+				59F969EB2040087A000413E7 /* CYLDeallocBlockExecutor */,
 				598D62BA203EC979008173B8 /* AppDelegate.h */,
 				598D62BB203EC979008173B8 /* AppDelegate.m */,
 				598D62BD203EC979008173B8 /* ViewController.h */,
@@ -77,6 +89,12 @@
 				598D62D1203ECAD2008173B8 /* NSObject+Forwarding.m */,
 				598D62D3203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.h */,
 				598D62D4203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m */,
+				59F969E62040060A000413E7 /* NSObject+KVOProtect.h */,
+				59F969E72040060A000413E7 /* NSObject+KVOProtect.m */,
+				59F969ED20400993000413E7 /* NSObject+Swizzle.h */,
+				59F969EE20400993000413E7 /* NSObject+Swizzle.m */,
+				59F969F020400F63000413E7 /* UIView+Protect.h */,
+				59F969F120400F63000413E7 /* UIView+Protect.m */,
 			);
 			path = HPSafety;
 			sourceTree = "<group>";
@@ -140,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				598D62C7203EC979008173B8 /* LaunchScreen.storyboard in Resources */,
+				59F969EC2040087A000413E7 /* CYLDeallocBlockExecutor in Resources */,
 				598D62C4203EC979008173B8 /* Assets.xcassets in Resources */,
 				598D62C2203EC979008173B8 /* Main.storyboard in Resources */,
 			);
@@ -152,10 +171,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59F969F220400F63000413E7 /* UIView+Protect.m in Sources */,
+				59F969EF20400993000413E7 /* NSObject+Swizzle.m in Sources */,
 				598D62BF203EC979008173B8 /* ViewController.m in Sources */,
 				598D62D5203ECB0C008173B8 /* HPUnrecognizedSelectorSolveObject.m in Sources */,
 				598D62CA203EC979008173B8 /* main.m in Sources */,
 				598D62D2203ECAD2008173B8 /* NSObject+Forwarding.m in Sources */,
+				59F969E82040060A000413E7 /* NSObject+KVOProtect.m in Sources */,
 				598D62BC203EC979008173B8 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

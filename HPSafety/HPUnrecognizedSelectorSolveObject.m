@@ -22,12 +22,32 @@
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)selector {
-    class_addMethod([self class], selector, (IMP)autoAddMethod, "v@:@");
+    NSLog(@"%@", NSStringFromSelector(selector));
+    class_addMethod([self class], selector, (IMP)autoAddMethod, "@@:");
+    [super resolveInstanceMethod:selector];
     return YES;
 }
 
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    id result = [super forwardingTargetForSelector:aSelector];
+    return result;
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
+    id result = [super methodSignatureForSelector:aSelector];
+    return result;
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
+    [super forwardInvocation:anInvocation];
+}
+
+- (void)doesNotRecognizeSelector:(SEL)aSelector {
+    [super doesNotRecognizeSelector:aSelector];
+}
+
 id autoAddMethod(id self, SEL _cmd) {
-    return 0;
+    return [NSNull null];
 }
 
 @end

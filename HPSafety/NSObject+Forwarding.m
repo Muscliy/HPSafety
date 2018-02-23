@@ -8,6 +8,7 @@
 
 #import "NSObject+Forwarding.h"
 #import "HPUnrecognizedSelectorSolveObject.h"
+#import "NSObject+Swizzle.h"
 #import <objc/runtime.h>
 
 typedef NS_ENUM(NSInteger, HPUnrecognizedSelectorSolveScheme) {
@@ -20,49 +21,37 @@ typedef NS_ENUM(NSInteger, HPUnrecognizedSelectorSolveScheme) {
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        HPUnrecognizedSelectorSolveScheme scheme = HPUnrecognizedSelectorSolveScheme2;
-        if (scheme == HPUnrecognizedSelectorSolveScheme1) {
-            [[self class] swizzedMethod:@selector(forwardingTargetForSelector:) withMethod:@selector(newForwardingTargetForSelector:)];
-        } else if (scheme == HPUnrecognizedSelectorSolveScheme2) {
-            [[self class] swizzedMethod:@selector(methodSignatureForSelector:) withMethod:@selector(newMethodSignatureForSelector:)];
-            [[self class] swizzedMethod:@selector(forwardInvocation:) withMethod:@selector(newForwardInvocation:)];
-        }
+        [[self class] hp_swizzleMethod:@selector(forwardingTargetForSelector:) withMethod:@selector(hp_forwardingTargetForSelector:)];
     });
 }
 
-+(void)swizzedMethod:(SEL)originalSelector withMethod:(SEL)swizzledSelector {
-    Class cls = [self class];
-    Method originalMethod = class_getInstanceMethod(cls, originalSelector);
-    Method swizzledMethod = class_getInstanceMethod(cls, swizzledSelector);
-    
-    BOOL didAddMethod = class_addMethod(cls, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
-    if (didAddMethod) {
-        class_replaceMethod(cls, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(swizzledMethod));
-    } else {
-        method_exchangeImplementations(originalMethod, swizzledMethod);
+
++ (BOOL)hp_isWhiteListClass:(Class)cls {
+    NSString *classString = NSStringFromClass(cls);
+    BOOL isInternal = [classString hasPrefix:@"_"];
+    if (isInternal) {
+        return NO;
     }
+    BOOL isNull = [classString isEqualToString:NSStringFromClass([NSNull class])];
+    BOOL isMyClass = [classString hasPrefix:@"HP"];
+    return isNull || isMyClass;
 }
 
 #pragma mark forwardTarget
-- (id)newForwardingTargetForSelector:(SEL)selector {
-    HPUnrecognizedSelectorSolveObject *obj = [HPUnrecognizedSelectorSolveObject shareInstance];
-    return obj;
+- (id)hp_forwardingTargetForSelector:(SEL)selector {
+    id result = [self hp_forwardingTargetForSelector:selector];
+    if (result) {
+        return result;
+    }
+    BOOL isWhiteClass = [[self class] hp_isWhiteListClass:[self class]];
+    if (!isWhiteClass) {
+        return nil;
+    }
+    if (!result) {
+        result = [HPUnrecognizedSelectorSolveObject shareInstance];
+    }
+    return result;
 }
 
-- (NSMethodSignature *)newMethodSignatureForSelector:(SEL)sel{
-    HPUnrecognizedSelectorSolveObject *obj = [HPUnrecognizedSelectorSolveObject shareInstance];
-    return [self newMethodSignatureForSelector:sel] ?: [obj newMethodSignatureForSelector:sel];
-}
-
-- (void)newForwardInvocation:(NSInvocation *)anInvocation {
-    if ([self newMethodSignatureForSelector:anInvocation.selector]) {
-        [self newForwardInvocation:anInvocation];
-        return;
-    }
-    HPUnrecognizedSelectorSolveObject *obj = [HPUnrecognizedSelectorSolveObject shareInstance];
-    if ([self methodSignatureForSelector:anInvocation.selector]) {
-        [anInvocation invokeWithTarget:obj];
-    }
-}
 
 @end
